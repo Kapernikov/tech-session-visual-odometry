@@ -29,6 +29,9 @@
   </node>
 
   <!-- launch odom message to tf converter node -->
-  <node name="odom_to_tf" pkg="message_to_tf" type="message_to_tf" ns="$(arg namespace)" args="odom"/>
+  <node name="odom_to_tf" pkg="message_to_tf" type="message_to_tf" ns="$(arg namespace)" args="odom" />
+
+  <!-- launch map tf static publisher for ground truth -->
+  <node name="map_tf_static_pub_node" pkg="tf" type="static_transform_publisher" args="0 0 0.163 0 0 0 map odom 100"/>
 
 </launch>
