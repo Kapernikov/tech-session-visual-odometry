@@ -1,0 +1,3 @@
+[submodule "ackermann-drive-teleop"]
+	path = ackermann-drive-teleop
+	url = git@github.com:gkouros/ackermann-drive-teleop.git
