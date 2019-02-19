@@ -6,17 +6,18 @@
   <arg name="play_bag"          default="false" /> <!-- run bag instead of simulation -->
 
   <!-- arguments -->
-  <arg name="camera_ns" default="stereo_camera" />
-  <arg name="start"     default="0" /> <!-- set start time of bag file -->
-  <arg name="rate"      default="1" /> <!-- set start time of bag file -->
+  <arg name="namespace"         default="/ackermann_vehicle" />
+  <arg name="camera_ns"         default="stereo_camera" />
   <arg name="record_bag_prefix" default="sim_stereo_bag" /> <!-- bag record name prefix -->
   <arg name="play_bag_file"     default="" /> <!-- name of bag file to run - must be located in ~/.ros -->
+  <arg name="start"             default="0" /> <!-- set start time of bag file -->
+  <arg name="rate"              default="1" /> <!-- set start time of bag file -->
 
   <!-- parameters -->
   <param name="/use_sim_time" value="true" /> <!-- must always be true with simulation and bags -->
 
   <!-- launch mapping node -->
-  <include if="$(arg vslam)" file="$(find visual_odometry)/launch/rtabmap.launch">
+  <include if="$(arg vslam)" file="$(find visual_odometry)/launch/rtabmap.launch" ns="$(arg namespace)">
     <arg name="use_sim_time"            value="true" />
     <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_gazebo.ini" />
     <arg name="rtabmap_args"            value="--delete_db_on_start Reg/Strategy 0" />
