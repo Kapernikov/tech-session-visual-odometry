@@ -4,37 +4,30 @@
   <arg name="rectify" default="false" />
 
   <!-- play bag -->
-  <group if="$(arg bag)">
-    <node name="kitti_bag_player" pkg="rosbag" type="play" args="$(arg path) --clock /tf:=/tf_dev_null">
-      <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_raw"   if="$(arg rectify)" />
-      <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_raw" if="$(arg rectify)" />
-      <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_rect"   unless="$(arg rectify)" />
-      <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_rect" unless="$(arg rectify)" />
-      <remap from="/kitti/camera_color_left/camera_info"  to="/kitti/left/camera_info" />
-      <remap from="/kitti/camera_color_right/camera_info" to="/kitti/right/camera_info" />
-    </node>
+  <node name="kitti_bag_player" pkg="rosbag" type="play" args="$(arg path) --clock /tf:=/tf_dev_null">
+    <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_raw"   if="$(arg rectify)" />
+    <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_raw" if="$(arg rectify)" />
+    <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_rect"   unless="$(arg rectify)" />
+    <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_rect" unless="$(arg rectify)" />
+    <remap from="/kitti/camera_color_left/camera_info"  to="/kitti/left/camera_info" />
+    <remap from="/kitti/camera_color_right/camera_info" to="/kitti/right/camera_info" />
+  </node>
 
-    <node if="$(arg rectify)" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc"
-          ns="/kitti" />
+  <node if="$(arg rectify)" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc"
+        ns="/kitti" />
 
-    <include file="$(find visual_odometry)/launch/rtabmap.launch">
-      <arg name="rtabmap_args"            value="--delete_db_on_start" />
-      <arg name="use_sim_time"            value="true" />
-      <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_default.ini" />
-      <arg name="stereo"                  value="true" />
-      <arg name="approx_sync"             value="true" />
-      <arg name="frame_id"                value="base_link" />
-      <arg name="left_image_topic"        value="/kitti/left/image_rect" />
-      <arg name="left_camera_info_topic"  value="/kitti/left/camera_info" />
-      <arg name="right_image_topic"       value="/kitti/right/image_rect" />
-      <arg name="right_camera_info_topic" value="/kitti/right/camera_info" />
-      <arg name="gps_topic"               value="/kitti/oxts/gps/fix" />
-    </include>
-
-  </group>
-  
-
-  <!-- launch rtabmap-kitti for kitti stereo odometry dataset -->
-  <node name="rtabmap_kitti" pkg="visual_odometry" type="rtabmap_kitti.sh" unless="$(arg bag)" />
+  <include file="$(find visual_odometry)/launch/rtabmap.launch">
+    <arg name="rtabmap_args"            value="--delete_db_on_start" />
+    <arg name="use_sim_time"            value="true" />
+    <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_default.ini" />
+    <arg name="stereo"                  value="true" />
+    <arg name="approx_sync"             value="true" />
+    <arg name="frame_id"                value="base_link" />
+    <arg name="left_image_topic"        value="/kitti/left/image_rect" />
+    <arg name="left_camera_info_topic"  value="/kitti/left/camera_info" />
+    <arg name="right_image_topic"       value="/kitti/right/image_rect" />
+    <arg name="right_camera_info_topic" value="/kitti/right/camera_info" />
+    <arg name="gps_topic"               value="/kitti/oxts/gps/fix" />
+  </include>
 
 </launch>
