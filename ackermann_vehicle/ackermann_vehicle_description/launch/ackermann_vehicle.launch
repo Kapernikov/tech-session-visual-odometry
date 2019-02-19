@@ -22,6 +22,7 @@ limitations under the License.
 
 <launch>
   <arg name="namespace" default="ackermann_vehicle"/>
+  <arg name="rviz"      default="false" />
 
   <group ns="$(arg namespace)">
     <!-- robot_description is used by nodes that publish to joint_states. -->
@@ -34,5 +35,18 @@ limitations under the License.
           type="robot_state_publisher">
       <param name="publish_frequency" value="30.0"/>
     </node>
+
+    <group if="$(arg rviz)">
+      <!-- Read joint positions from a GUI, then publish them to joint_states. -->
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="rate" value="30"/>
+        <param name="use_gui" value="true"/>
+      </node>
+
+      <!-- launch visualization node -->
+      <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find ackermann_vehicle_description)/rviz/description_config.rviz"/>
+    </group>
+
   </group>
 </launch>
