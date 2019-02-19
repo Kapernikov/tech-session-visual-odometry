@@ -8,7 +8,7 @@
   <!-- arguments -->
   <arg name="namespace"         default="/ackermann_vehicle" />
   <arg name="camera_ns"         default="stereo_camera" />
-  <arg name="record_bag_prefix" default="sim_stereo_bag" /> <!-- bag record name prefix -->
+  <arg name="record_bag_prefix" default="sim_vslam_bag" /> <!-- bag record name prefix -->
   <arg name="play_bag_file"     default="" /> <!-- name of bag file to run - must be located in ~/.ros -->
   <arg name="start"             default="0" /> <!-- set start time of bag file -->
   <arg name="rate"              default="1" /> <!-- set start time of bag file -->
@@ -34,14 +34,15 @@
   <!-- record bag with compressed images -->
   <node if="$(arg record_bag)" name="rosbag_recorder" pkg="rosbag" type="record" output="screen"
     args="-o $(arg record_bag_prefix) -e
-    '(.*)/(left|right)/(camera_info|image_rect_color/compressed)'
+    '(.*)/(left|right)/(camera_info|image_rect_color/(compressed|theora)'
     '(.*)/odom_truth'
     '/tf(|_static)'" />
-
-  <node if="$(arg record_bag)" name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/stereo_odometry_config.rviz" />
 
   <!-- playback recorded bag file -->
   <node if="$(arg play_bag)" name="stereo_bag_player" pkg="rosbag" type="play" output="screen"
         args="$(arg play_bag_file) --clock -s $(arg start) -r $(arg rate)" />
+
+  <!-- launch visualization node -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/stereo_odometry_config.rviz" />
 
 </launch>
