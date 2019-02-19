@@ -1,16 +1,27 @@
 <launch>
 
-	<param name="use_sim_time" type="bool" value="True"/>
+  <!-- flasgs -->
+  <arg name="vo"               default="true" /> <!-- vslam flag -->
+  <arg name="record_bag"        default="false" /> <!-- bag record flag -->
+  <arg name="play_bag"          default="false" /> <!-- run bag instead of simulation -->
 
-  <arg name="namespace" default="/ackermann_vehicle" />
+  <!-- arguments -->
+  <arg name="namespace"         default="/ackermann_vehicle" />
+  <arg name="camera_ns"         default="stereo_camera" />
+  <arg name="record_bag_prefix" default="sim_stereo_bag" /> <!-- bag record name prefix -->
+  <arg name="play_bag_file"     default="" /> <!-- name of bag file to run - must be located in ~/.ros -->
+  <arg name="start"             default="0" /> <!-- set start time of bag file -->
+  <arg name="rate"              default="1" /> <!-- set start time of bag file -->
+
+  <!-- parameters -->
+	<param name="use_sim_time" type="bool" value="True"/>
 
   <!-- Stereo Odometry -->
   <node pkg="rtabmap_ros" type="stereo_odometry" name="stereo_odometry" output="screen" ns="$(arg namespace)">
-     <remap from="left/image_rect"       to="stereo_camera/left/image_rect"/>
-     <remap from="right/image_rect"      to="stereo_camera/right/image_rect"/>
-     <remap from="left/camera_info"      to="stereo_camera/left/camera_info"/>
-     <remap from="right/camera_info"     to="stereo_camera/right/camera_info"/>
-     <remap from="rgbd_image"            to="stereo_camera/rgbd_image"/>
+     <remap from="left/image_rect"       to="$(arg camera_ns)/left/image_rect_color"/>
+     <remap from="right/image_rect"      to="$(arg camera_ns)/right/image_rect_color"/>
+     <remap from="left/camera_info"      to="$(arg camera_ns)/left/camera_info"/>
+     <remap from="right/camera_info"     to="$(arg camera_ns)/right/camera_info"/>
 
      <param name="frame_id"                 value="base_link"/>
      <param name="odom_frame_id"            value="odom"/>
@@ -33,5 +44,19 @@
 
   <!-- launch map tf static publisher for ground truth -->
   <node name="map_tf_static_pub_node" pkg="tf" type="static_transform_publisher" args="0 0 0.163 0 0 0 map odom 100"/>
+
+  <!-- record bag with images -->
+  <node if="$(arg record_bag)" name="rosbag_recorder" pkg="rosbag" type="record" output="screen"
+    args="-o $(arg record_bag_prefix) -e
+    '(.*)/(left|right)/(camera_info|image_rect_color(|/theora))'
+    '(.*)/odom_truth'
+    '/tf(|_static)'" />
+
+  <!-- playback recorded bag file -->
+  <node if="$(arg play_bag)" name="stereo_bag_player" pkg="rosbag" type="play" output="screen"
+        args="$(arg play_bag_file) --clock -s $(arg start) -r $(arg rate)" />
+
+  <!-- launch visualization node -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/stereo_odometry_config.rviz" />
 
 </launch>
