@@ -1,0 +1,25 @@
+<launch>
+
+  <!-- flasgs -->
+
+  <!-- arguments -->
+  <arg name="camera_ns" default="stereo_camera" />
+
+  <!-- parameters -->
+  <param name="/use_sim_time" value="true" />
+
+  <!-- launch mapping node -->
+  <include file="$(find visual_odometry)/launch/rtabmap.launch">
+    <arg name="use_sim_time"            value="true" />
+    <arg name="rtabmap_args"            value="--delete_db_on_start Reg/Strategy 0" />
+    <arg name="stereo"                  value="true" />
+    <arg name="visual_odometry"         value="true"/>
+    <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_gazebo.ini" />
+    <arg name="frame_id"                value="stereo_camera_center" />
+    <arg name="left_image_topic"        value="$(arg camera_ns)/left/image_rect_color" />
+    <arg name="right_image_topic"       value="$(arg camera_ns)/right/image_rect_color" />
+    <arg name="left_camera_info_topic"  value="$(arg camera_ns)/left/camera_info" />
+    <arg name="right_camera_info_topic" value="$(arg camera_ns)/right/camera_info" />
+  </include>
+
+</launch>
