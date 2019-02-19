@@ -347,6 +347,7 @@ limitations under the License.
   <!-- base_link must have geometry so that its axes can be displayed in
        rviz. -->
   <link name="base_link" />
+  <link name="base_footprint" />
 
   <!-- Chassis -->
   <link name="chassis">
@@ -378,6 +379,12 @@ limitations under the License.
   <joint name="base_link_to_chasis" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
+  </joint>
+
+  <joint name="base_footprint_to_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.1" />
   </joint>
 
   <!-- Batteries -->
@@ -421,7 +428,7 @@ limitations under the License.
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" />
     <plugin name="gazebo_ros_p3d"     filename="libgazebo_ros_p3d.so">
       <frameName>map</frameName>
-      <bodyName>base_link</bodyName>
+      <bodyName>base_footprint</bodyName>
       <topicName>odom_truth</topicName>
       <updateRate>30.0</updateRate>
     </plugin>
