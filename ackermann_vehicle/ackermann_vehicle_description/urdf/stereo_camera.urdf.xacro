@@ -144,8 +144,8 @@
           <cameraName>stereo_camera</cameraName>
           <imageTopicName>image_raw</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-          <frameName>stereo_left_camera_frame</frameName>
-          <rightFrameName>stereo_right_camera_frame</rightFrameName>
+          <frameName>/stereo_left_camera_frame</frameName>
+          <rightFrameName>/stereo_right_camera_frame</rightFrameName>
           <hackBaseline>0.12</hackBaseline>
           <!-- <distortionK1>-0.066412</distortionK1> -->
           <!-- <distortionK2>0.008609</distortionK2> -->
