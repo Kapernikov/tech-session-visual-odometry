@@ -12,7 +12,6 @@
      <remap from="right/camera_info"     to="stereo_camera/right/camera_info"/>
      <remap from="rgbd_image"            to="stereo_camera/rgbd_image"/>
 
-     <!-- <param name="subscribe_rgbd"           value="$(arg stereo_sync)"/> -->
      <param name="frame_id"                 value="base_link"/>
      <param name="odom_frame_id"            value="odom"/>
      <param name="approx_sync"              value="true"/>
@@ -22,7 +21,7 @@
      <param name="Vis/MaxDepth"             value="0"/>
      <param name="Odom/GuessMotion"         value="true"/>
      <param name="Vis/MinInliers"           value="10"/>
-     <!-- <param name="OdomF2M/BundleAdjustment" value="0" unless="$(arg local_bundle)"/> -->
+     <param name="OdomF2M/BundleAdjustment" value="1"/>
      <param name="OdomF2M/MaxSize"          value="1000"/>
      <param name="GFTT/MinDistance"         value="10"/>
      <param name="GFTT/QualityLevel"        value="0.00001"/>
