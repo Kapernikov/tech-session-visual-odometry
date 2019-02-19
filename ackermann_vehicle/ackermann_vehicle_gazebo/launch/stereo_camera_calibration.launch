@@ -1,0 +1,23 @@
+<launch>
+
+  <arg name="left_topic"  value="/ackermann_vehicle/stereo_camera/left/image_raw" />
+  <arg name="right_topic" value="/ackermann_vehicle/stereo_camera/right/image_raw" />
+  <arg name="left_frame"  value="/ackermann_vehicle/stereo_left_camera_frame" />
+  <arg name="right_frame" value="/ackermann_vehicle/stereo_left_camera_frame" />
+  <arg name="left_srv_topic"  value="/ackermann_vehicle/stereo_camera/left/set_camera_info" />
+  <arg name="right_srv_topic" value="/ackermann_vehicle/stereo_camera/right/set_camera_info" />
+
+  <node name="stereo_camera_calibration_node" pkg="camera_calibration" type="cameracalibrator.py" output="screen"
+        args="
+        --approximate 0.1
+        --size 8x6
+        --square 0.108
+        left:=$(arg left_topic)
+        right:=$(arg right_topic)
+        left_camera:=$(arg left_frame)
+        right_camera:=$(arg right_frame)
+        /ackermann_vehicle/stereo_left_camera_frame/set_camera_info:=$(arg left_srv_topic)
+        /ackermann_vehicle/stereo_right_camera_frame/set_camera_info:=$(arg right_srv_topic)
+        " />
+
+</launch>
