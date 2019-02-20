@@ -7,10 +7,12 @@
   <author email="george@kapernikov.com">George Kouros</author>
   <license>Copyright (c) 2019 Kapernikov CVBA. All rights reserved.</license>
 
-
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>rtabmap</exec_depend>
   <exec_depend>rtabmap_ros</exec_depend>
+  <exec_depend>tf_to_odometry</exec_depend>
+  <exec_depend>message_to_tf</exec_depend>
+  <exec_depend>hector_trajectory_server</exec_depend>
 
   <export>
   </export>
