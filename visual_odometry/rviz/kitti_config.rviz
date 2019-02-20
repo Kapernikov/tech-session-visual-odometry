@@ -267,7 +267,7 @@ Visualization Manager:
         Shaft Length: 1
         Shaft Radius: 0.20000000298023224
         Value: Arrow
-      Topic: /odometry_from_tf
+      Topic: /ground_truth/odom
       Unreliable: false
       Value: false
     - Alpha: 1

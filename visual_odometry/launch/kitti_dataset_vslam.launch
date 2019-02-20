@@ -34,6 +34,7 @@
   <node name="ground_truth_odom_pub" pkg="tf_to_odometry" type="tf_to_odometry" output="screen">
     <param name="parent_frame"     value="world" />
     <param name="child_frame"      value="ground_truth/base_link" />
+    <remap from="odometry_from_tf" to="/ground_truth/odom" />
   </node>
 
   <node name="world2map_static_tf_pub" pkg="tf" type="static_transform_publisher"
