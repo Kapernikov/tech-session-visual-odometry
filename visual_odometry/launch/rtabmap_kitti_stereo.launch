@@ -1,0 +1,57 @@
+<launch>
+  <arg name="bag_file" default="kitti/kitti.bag" />
+  <arg name="rviz"     default="true" />
+  <arg name="rectify"  default="false" />
+  <arg name="rate"     default="1" />
+
+  <!-- play bag -->
+  <node name="kitti_bag_player" pkg="rosbag" type="play" args="$(arg bag_file) --clock -r $(arg rate)">
+    <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_raw"   if="$(arg rectify)" />
+    <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_raw" if="$(arg rectify)" />
+    <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_rect"   unless="$(arg rectify)" />
+    <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_rect" unless="$(arg rectify)" />
+    <remap from="/kitti/camera_color_left/camera_info"  to="/kitti/left/camera_info" />
+    <remap from="/kitti/camera_color_right/camera_info" to="/kitti/right/camera_info" />
+  </node>
+
+  <node if="$(arg rectify)" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc"
+        ns="/kitti" />
+
+  <include file="$(find visual_odometry)/launch/rtabmap.launch">
+    <arg name="rtabmap_args"            value="--delete_db_on_start" />
+    <arg name="use_sim_time"            value="true" />
+    <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_kitti.ini" />
+    <arg name="stereo"                  value="true" />
+    <arg name="approx_sync"             value="true" />
+    <arg name="frame_id"                value="base_link" />
+    <arg name="left_image_topic"        value="/kitti/left/image_rect" />
+    <arg name="left_camera_info_topic"  value="/kitti/left/camera_info" />
+    <arg name="right_image_topic"       value="/kitti/right/image_rect" />
+    <arg name="right_camera_info_topic" value="/kitti/right/camera_info" />
+    <arg name="gps_topic"               value="/kitti/oxts/gps/fix" />
+  </include>
+
+  <node name="ground_truth_odom_pub" pkg="tf_to_odometry" type="tf_to_odometry" output="screen">
+    <param name="parent_frame"     value="world" />
+    <param name="child_frame"      value="ground_truth/base_link" />
+  </node>
+
+  <node name="world2map_static_tf_pub" pkg="tf" type="static_transform_publisher"
+    args="1.08989917811 6.88452416442 -0.0392013185885 0.0105155543688 0.00818493475237 0.658924158706 0.752091339555 world map 100" />
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find visual_odometry)/rviz/kitti_config.rviz" />
+
+  <node name="trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
+    <param name="target_frame_name" value="world" />
+    <param name="source_frame_name" value="base_link" />
+    <param name="trajectory_publish_rate" value="4" />
+  </node>
+
+  <node name="ground_truth_trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
+    <param name="target_frame_name" value="world" />
+    <param name="source_frame_name" value="ground_truth/base_link" />
+    <param name="trajectory_publish_rate" value="4" />
+    <remap from="trajectory" to="trajectory_ground_truth" />
+  </node>
+
+</launch>
