@@ -1,7 +1,11 @@
 <launch>
-  <arg name="bag_file" default="kitti/kitti.bag" />
+
+  <!-- flags -->
   <arg name="rviz"     default="true" />
   <arg name="rectify"  default="false" />
+
+  <!-- arguments -->
+  <arg name="bag_file" default="kitti/kitti.bag" />
   <arg name="rate"     default="1" />
 
   <!-- play bag -->
@@ -14,9 +18,11 @@
     <remap from="/kitti/camera_color_right/camera_info" to="/kitti/right/camera_info" />
   </node>
 
+  <!-- rectify camera images if flag is set  -->
   <node if="$(arg rectify)" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc"
         ns="/kitti" />
 
+  <!-- launch VSLAM node -->
   <include file="$(find visual_odometry)/launch/rtabmap.launch">
     <arg name="rtabmap_args"            value="--delete_db_on_start" />
     <arg name="use_sim_time"            value="true" />
@@ -31,15 +37,18 @@
     <arg name="gps_topic"               value="/kitti/oxts/gps/fix" />
   </include>
 
+  <!-- gets tf poses of ground truth and publish as an odometry message -->
   <node name="ground_truth_odom_pub" pkg="tf_to_odometry" type="tf_to_odometry" output="screen">
     <param name="parent_frame"     value="world" />
     <param name="child_frame"      value="ground_truth/base_link" />
     <remap from="odometry_from_tf" to="/ground_truth/odom" />
   </node>
 
+  <!-- publishes the transform between the world and the map frame -->
   <node name="world2map_static_tf_pub" pkg="tf" type="static_transform_publisher"
     args="1.08989917811 6.88452416442 -0.0392013185885 0.0105155543688 0.00818493475237 0.658924158706 0.752091339555 world map 100" />
 
+  <!-- launch visualization node -->
   <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find visual_odometry)/rviz/kitti_config.rviz" />
 
   <node name="trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
