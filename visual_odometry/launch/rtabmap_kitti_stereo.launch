@@ -4,7 +4,7 @@
   <arg name="rectify" default="false" />
 
   <!-- play bag -->
-  <node name="kitti_bag_player" pkg="rosbag" type="play" args="$(arg path) --clock /tf:=/tf_dev_null">
+  <node name="kitti_bag_player" pkg="rosbag" type="play" args="$(arg path) --clock /tf:=/tf">
     <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_raw"   if="$(arg rectify)" />
     <remap from="/kitti/camera_color_right/image_raw" to="/kitti/right/image_raw" if="$(arg rectify)" />
     <remap from="/kitti/camera_color_left/image_raw" to="/kitti/left/image_rect"   unless="$(arg rectify)" />
@@ -19,7 +19,7 @@
   <include file="$(find visual_odometry)/launch/rtabmap.launch">
     <arg name="rtabmap_args"            value="--delete_db_on_start" />
     <arg name="use_sim_time"            value="true" />
-    <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_default.ini" />
+    <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_kitti.ini" />
     <arg name="stereo"                  value="true" />
     <arg name="approx_sync"             value="true" />
     <arg name="frame_id"                value="base_link" />
@@ -29,5 +29,16 @@
     <arg name="right_camera_info_topic" value="/kitti/right/camera_info" />
     <arg name="gps_topic"               value="/kitti/oxts/gps/fix" />
   </include>
+
+  <node name="ground_truth_odom_pub" pkg="tf_to_odometry" type="tf_to_odometry" output="screen">
+    <param name="parent_frame" value="world" />
+    <param name="child_frame"  value="base_link" />
+  </node>
+
+
+  <node name="world2map_static_tf_pub" pkg="tf" type="static_transform_publisher"
+    args="1.08989917811 6.88452416442 -0.0392013185885 0.0105155543688 0.00818493475237 0.658924158706 0.752091339555 world map 100" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/kitti_config.rviz" />
 
 </launch>
