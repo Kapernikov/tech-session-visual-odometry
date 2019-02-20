@@ -45,4 +45,17 @@
   <!-- launch visualization node -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/stereo_odometry_config.rviz" />
 
+  <!-- launch trajectory server for odometry -->
+  <node name="trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server" ns="$(arg namespace)">
+    <param name="target_frame_name" value="map" />
+    <param name="source_frame_name" value="base_link" />
+    <param name="trajectory_publish_rate" value="4" />
+  </node>
+
+  <!-- launch odometry to trajectory converter for ground truth -->
+  <node name="trajectory_server_ground_truth" pkg="visual_odometry" type="odom_to_path.py" ns="$(arg namespace)">
+    <remap from="/eskf_odom" to="odom_truth" />
+    <remap from="/path" to="trajectory_ground_truth" />
+  </node>
+
 </launch>
