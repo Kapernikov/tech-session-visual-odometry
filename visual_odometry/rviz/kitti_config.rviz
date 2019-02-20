@@ -6,6 +6,9 @@ Panels:
       Expanded:
         - /TF1/Frames1
         - /Map Graph Node Markers1/Namespaces1
+        - /Stereo Odometry1/Shape1
+        - /Ground Truth Odometry1
+        - /Ground Truth Odometry1/Shape1
       Splitter Ratio: 0.5
     Tree Height: 548
   - Class: rviz/Selection
@@ -26,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: Right Camera
 Preferences:
   PromptSaveOnExit: true
 Visualization Manager:
@@ -55,13 +58,58 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: true
+        base_link:
+          Value: true
+        base_stabilized:
+          Value: true
+        camera_color_left:
+          Value: false
+        camera_color_right:
+          Value: false
+        camera_gray_left:
+          Value: false
+        camera_gray_right:
+          Value: false
+        ground_truth/base_link:
+          Value: true
+        imu_link:
+          Value: false
+        map:
+          Value: true
+        odom:
+          Value: true
+        velo_link:
+          Value: false
+        world:
+          Value: true
       Marker Scale: 40
       Name: TF
       Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        world:
+          base_footprint:
+            base_stabilized:
+              ground_truth/base_link:
+                {}
+          base_link:
+            imu_link:
+              camera_color_left:
+                {}
+              camera_color_right:
+                {}
+              camera_gray_left:
+                {}
+              camera_gray_right:
+                {}
+              velo_link:
+                {}
+          map:
+            odom:
+              {}
       Update Interval: 0
       Value: true
     - Class: rviz/Image
@@ -114,7 +162,7 @@ Visualization Manager:
       Color Transformer: RGB8
       Download graph: false
       Download map: false
-      Enabled: true
+      Enabled: false
       Filter ceiling (m): 0
       Filter floor (m): 0
       Invert Rainbow: false
@@ -133,10 +181,10 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rtabmap_ros/MapGraph
-      Enabled: true
+      Enabled: false
       Global loop closure: 255; 0; 0
       Local loop closure: 255; 255; 0
       Merged neighbor: 255; 170; 0
@@ -145,20 +193,21 @@ Visualization Manager:
       Topic: /rtabmap/mapGraph
       Unreliable: false
       User: 255; 0; 0
-      Value: true
+      Value: false
       Virtual: 255; 0; 255
     - Class: rtabmap_ros/Info
-      Enabled: true
+      Enabled: false
       Name: Map Graph Info
       Topic: /rtabmap/info
       Unreliable: false
-      Value: true
+      Value: false
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /rtabmap/labels
       Name: Map Graph Node Markers
       Namespaces:
-        {}
+        ids: true
+        labels: true
       Queue Size: 100
       Value: true
     - Angle Tolerance: 0.10000000149011612
@@ -187,10 +236,10 @@ Visualization Manager:
         Axes Length: 1
         Axes Radius: 0.10000000149011612
         Color: 255; 25; 0
-        Head Length: 0.20000000298023224
-        Head Radius: 0.10000000149011612
-        Shaft Length: 0.5
-        Shaft Radius: 0.05000000074505806
+        Head Length: 0.800000011920929
+        Head Radius: 0.4000000059604645
+        Shaft Length: 1
+        Shaft Radius: 0.20000000298023224
         Value: Arrow
       Topic: /rtabmap/odom
       Unreliable: false
@@ -221,12 +270,12 @@ Visualization Manager:
         Axes Length: 1
         Axes Radius: 0.10000000149011612
         Color: 115; 210; 22
-        Head Length: 0.20000000298023224
-        Head Radius: 0.10000000149011612
-        Shaft Length: 0.5
-        Shaft Radius: 0.05000000074505806
+        Head Length: 0.800000011920929
+        Head Radius: 0.4000000059604645
+        Shaft Length: 1
+        Shaft Radius: 0.20000000298023224
         Value: Arrow
-      Topic: /odometry/filtered
+      Topic: /odometry_from_tf
       Unreliable: false
       Value: true
   Enabled: true
@@ -254,25 +303,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 346.53460693359375
+      Distance: 347.056884765625
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 91.326904296875
-        Y: -77.5475082397461
-        Z: -18.67716407775879
+        X: 106.31097412109375
+        Y: -81.20880126953125
+        Z: -15.010237693786621
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.3297958374023438
+      Pitch: 0.7697962522506714
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.15855073928833
+      Yaw: 3.1385509967803955
     Saved: ~
 Window Geometry:
   Displays:
