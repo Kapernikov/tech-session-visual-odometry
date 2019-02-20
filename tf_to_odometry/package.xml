@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>tf_to_odometry</name>
+  <version>0.0.0</version>
+  <description>A package to change an arbitrary to a nav_msgs/Odometry message</description>
+
+  <maintainer email="geoffrey.viola@asirobots.com">Geoffrey Viola</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <run_depend>tf2</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+  <run_depend>tf2_ros</run_depend>
+  <run_depend>nav_msgs</run_depend>
+
+  <export>
+  </export>
+</package>
