@@ -39,6 +39,19 @@
   <node name="world2map_static_tf_pub" pkg="tf" type="static_transform_publisher"
     args="1.08989917811 6.88452416442 -0.0392013185885 0.0105155543688 0.00818493475237 0.658924158706 0.752091339555 world map 100" />
 
-  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find visual_odometry)/rviz/kitti_config.rviz" />
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find visual_odometry)/rviz/kitti_config.rviz" />
+
+  <node name="trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
+    <param name="target_frame_name" value="world" />
+    <param name="source_frame_name" value="base_link" />
+    <param name="trajectory_publish_rate" value="4" />
+  </node>
+
+  <node name="ground_truth_trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
+    <param name="target_frame_name" value="world" />
+    <param name="source_frame_name" value="ground_truth/base_link" />
+    <param name="trajectory_publish_rate" value="4" />
+    <remap from="trajectory" to="trajectory_ground_truth" />
+  </node>
 
 </launch>
