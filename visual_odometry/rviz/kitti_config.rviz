@@ -7,7 +7,6 @@ Panels:
         - /TF1/Frames1
         - /Map Graph Node Markers1/Namespaces1
         - /Stereo Odometry1/Shape1
-        - /Ground Truth Odometry1
         - /Ground Truth Odometry1/Shape1
       Splitter Ratio: 0.5
     Tree Height: 548
@@ -58,11 +57,7 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
-          Value: true
         base_link:
-          Value: true
-        base_stabilized:
           Value: true
         camera_color_left:
           Value: false
@@ -91,25 +86,22 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          base_footprint:
-            base_stabilized:
-              ground_truth/base_link:
-                {}
-          base_link:
-            imu_link:
-              camera_color_left:
-                {}
-              camera_color_right:
-                {}
-              camera_gray_left:
-                {}
-              camera_gray_right:
-                {}
-              velo_link:
-                {}
+          ground_truth/base_link:
+            {}
           map:
             odom:
-              {}
+              base_link:
+                imu_link:
+                  camera_color_left:
+                    {}
+                  camera_color_right:
+                    {}
+                  camera_gray_left:
+                    {}
+                  camera_gray_right:
+                    {}
+                  velo_link:
+                    {}
       Update Interval: 0
       Value: true
     - Class: rviz/Image
@@ -227,7 +219,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: false
-      Enabled: true
+      Enabled: false
       Keep: 0
       Name: Stereo Odometry
       Position Tolerance: 0.10000000149011612
@@ -243,7 +235,7 @@ Visualization Manager:
         Value: Arrow
       Topic: /rtabmap/odom
       Unreliable: false
-      Value: true
+      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
       Covariance:
@@ -261,7 +253,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: false
-      Enabled: true
+      Enabled: false
       Keep: 0
       Name: Ground Truth Odometry
       Position Tolerance: 0.10000000149011612
@@ -276,6 +268,52 @@ Visualization Manager:
         Shaft Radius: 0.20000000298023224
         Value: Arrow
       Topic: /odometry_from_tf
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 239; 41; 41
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Billboards
+      Line Width: 0.5
+      Name: Trajectory
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic: /trajectory
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Billboards
+      Line Width: 0.5
+      Name: Trajectory Ground Truth
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic: /trajectory_ground_truth
       Unreliable: false
       Value: true
   Enabled: true
@@ -303,25 +341,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 347.056884765625
+      Distance: 208.12840270996094
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 106.31097412109375
-        Y: -81.20880126953125
-        Z: -15.010237693786621
+        X: 91.97844696044922
+        Y: -54.45866394042969
+        Z: -22.104503631591797
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7697962522506714
+      Pitch: 0.5847964882850647
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.1385509967803955
+      Yaw: 3.138550281524658
     Saved: ~
 Window Geometry:
   Displays:
