@@ -1,6 +1,6 @@
 # tech-session-visual-odometry
 
-Contains code, exercises, docker deployment files for the Visual Odometry Tech Session
+Contains code and docker deployment files for the Visual Odometry Tech Session
 
 ## Installation
 ### Using Docker
