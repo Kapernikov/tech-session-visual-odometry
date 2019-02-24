@@ -30,11 +30,9 @@ ADD --chown=kapernikov:kapernikov . / /home/kapernikov/catkin_ws/src/visual-odom
 RUN rosdep update
 USER root
 RUN DEBIAN_FRONTEND=noninteractive rosdep install -yr --from-paths /home/kapernikov/catkin_ws/src --ignore-src --rosdistro melodic
-RUN rm -rf /var/lib/apt/lists
+# RUN rm -rf /var/lib/apt/lists
 USER kapernikov
 WORKDIR /home/kapernikov/catkin_ws
-# RUN zsh /home/kapernikov/.zshrc
-# RUN zsh /opt/ros/melodic/setup.zsh
 RUN catkin config --extend /opt/ros/melodic
 RUN catkin build
 WORKDIR /home/kapernikov
