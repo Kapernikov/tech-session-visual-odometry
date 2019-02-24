@@ -1,6 +1,6 @@
 FROM ros:melodic-ros-base-bionic
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y sudo wget software-properties-common apt-utils vim emacs gedit zsh
+RUN apt-get install -y sudo wget software-properties-common apt-utils vim emacs gedit zsh ros-melodic-desktop-full
 
 # create kapernikov user, add to required groups and delete password authentication
 RUN useradd -ms /bin/bash kapernikov
