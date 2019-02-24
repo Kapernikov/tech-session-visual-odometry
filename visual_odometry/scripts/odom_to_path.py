@@ -14,40 +14,15 @@ import time
 
 
 def callback(data):
-        global xAnt
-        global yAnt
-        global cont
-
-        pose = PoseStamped()
-
-        pose.header.frame_id = "map"
-        pose.pose.position.x = float(data.pose.pose.position.x)
-        pose.pose.position.y = float(data.pose.pose.position.y)
-        pose.pose.position.z = float(data.pose.pose.position.z)
-        pose.pose.orientation.x = float(data.pose.pose.orientation.x)
-        pose.pose.orientation.y = float(data.pose.pose.orientation.y)
-        pose.pose.orientation.z = float(data.pose.pose.orientation.z)
-        pose.pose.orientation.w = float(data.pose.pose.orientation.w)
-
-        if (xAnt != pose.pose.position.x and yAnt != pose.pose.position.y):
-                pose.header.seq = path.header.seq + 1
-                path.header.frame_id = "map"
-                path.header.stamp = rospy.Time.now()
-                pose.header.stamp = path.header.stamp
-                path.poses.append(pose)
-                # Published the msg
-
-        cont = cont + 1
-
-        rospy.loginfo("Hit: %i" % cont)
-        if cont > max_append:
-                path.poses.pop(0)
-
-        pub.publish(path)
-
-        xAnt = pose.pose.orientation.x
-        yAnt = pose.pose.position.y
-        return path
+    pose = PoseStamped()
+    pose.header = data.header
+    pose.pose = data.pose.pose
+    pose.header.seq = path.header.seq + 1
+    path.header.frame_id = "map"
+    path.header.stamp = rospy.Time.now()
+    path.poses.append(pose)
+    pub.publish(path)
+    return path
 
 
 if __name__ == '__main__':
@@ -73,13 +48,13 @@ if __name__ == '__main__':
                 sys.exit()
         pub = rospy.Publisher('/path', Path, queue_size=1)
 
-        path = Path() 
+        path = Path()
         msg = Odometry()
 
         # Subscription to the required odom topic (edit accordingly)
         msg = rospy.Subscriber('/eskf_odom', Odometry, callback)
 
-        rate = rospy.Rate(30)  # 30hz
+        rate = rospy.Rate(5)  # 30hz
 
         try:
                 while not rospy.is_shutdown():
