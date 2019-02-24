@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>tech_session_visual_odometry</name>
+  <version>0.0.0</version>
+  <description>The tech_session_visual_odometry package</description>
+  <maintainer email="george@kapernikov.com">George Kouros</maintainer>
+  <author email="george@kapernikov.com">George Kouros</author>
+  <license>Copyright (c) 2019 Kapernikov CVBA. All rights reserved.</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>ackermann_drive_teleop</exec_depend>
+  <exec_depend>ackermann_vehicle</exec_depend>
+  <exec_depend>hector_map_tools</exec_depend>
+  <exec_depend>hector_nav_msgs</exec_depend>
+  <exec_depend>hector_trajectory_server</exec_depend>
+  <exec_depend>message_to_tf</exec_depend>
+  <exec_depend>tf_to_odometry</exec_depend>
+  <exec_depend>visual_odometry</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
