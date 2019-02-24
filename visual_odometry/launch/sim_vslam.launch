@@ -25,10 +25,10 @@
     <arg name="visual_odometry"         value="true"/>
     <arg name="compressed"              value="$(arg play_bag)" />
     <arg name="frame_id"                value="stereo_camera_center" />
-    <arg name="left_image_topic"        value="$(arg camera_ns)/left/image_rect_color" />
-    <arg name="right_image_topic"       value="$(arg camera_ns)/right/image_rect_color" />
-    <arg name="left_camera_info_topic"  value="$(arg camera_ns)/left/camera_info" />
-    <arg name="right_camera_info_topic" value="$(arg camera_ns)/right/camera_info" />
+    <arg name="left_image_topic"        value="/$(arg namespace)/$(arg camera_ns)/left/image_rect_color" />
+    <arg name="right_image_topic"       value="/$(arg namespace)/$(arg camera_ns)/right/image_rect_color" />
+    <arg name="left_camera_info_topic"  value="/$(arg namespace)/$(arg camera_ns)/left/camera_info" />
+    <arg name="right_camera_info_topic" value="/$(arg namespace)/$(arg camera_ns)/right/camera_info" />
   </include>
 
   <!-- record bag with compressed images -->
