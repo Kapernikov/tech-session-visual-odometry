@@ -77,7 +77,7 @@
 
    <model name="checkerboard">
       <static>true</static>
-      <pose frame="">2 0 0.5 0 -1.5 0</pose>
+      <pose frame="">2 0 1.1 0 -1.5 0</pose>
       <link name="checkerboard_link">
         <visual name="checkerboard_visual">
           <geometry>
