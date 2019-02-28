@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="cam_info_pub" type="publishCameraInfo" name="camera_info">
+	</node>
+</launch>
