@@ -11,7 +11,7 @@ $ git clone https://gitlab.com/Kapernikov/Intern/tech-session-visual-odometry.gi
 ```
 - Build the image:
 ```bash
-$ cd /path/to/ptech-session-visual-odometry
+$ cd /path/to/tech-session-visual-odometry
 $ ./docker_build.sh
 ```
 - Create the container:
