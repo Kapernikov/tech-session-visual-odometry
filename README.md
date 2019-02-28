@@ -95,8 +95,8 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -DBUILD_opencv_cudacodec=OFF \
     -DWITH_NVCUVID=OFF \
     -DWITH_NONFREE=ON
-# make -j4
-# sudo make install
+$ make -j4
+$ sudo make install
 ```
 
 #### RTAB-Map installation
