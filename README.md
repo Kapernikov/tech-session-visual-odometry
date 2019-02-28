@@ -85,7 +85,7 @@ $ git clone -b 3.4.5 https://github.com/opencv/opencv_contrib.git ~/opencv_contr
 $ cd opencv && mkdir build && cd build
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D WITH_CUDA=ON
+    -D WITH_CUDA=ON \
     -D ENABLE_FAST_MATH=1 \
     -D CUDA_FAST_MATH=1 \
     -D WITH_CUBLAS=1 \
