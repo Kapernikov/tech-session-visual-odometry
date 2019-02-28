@@ -45,7 +45,8 @@ limitations under the License.
   <arg name="paused"      default="false" />
 
   <!-- Vehicle pose -->
-  <arg name="x"           default="0.0"/>
+  <arg name="x"           default="0.0" unless="$(eval world=='checkerboard')"/>
+  <arg name="x"           default="0.2" if="$(eval world=='checkerboard')"/>
   <arg name="y"           default="0.0"/>
   <arg name="z"           default="0.0" unless="$(eval world=='checkerboard')"/>
   <arg name="z"           default="1.0" if="$(eval world=='checkerboard')"/>
