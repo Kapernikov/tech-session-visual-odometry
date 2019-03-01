@@ -5,7 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Stereo Pointcloud1/Status1
         - /Stereo Odometry1/Shape1
         - /Ground Truth Odometry1/Shape1
       Splitter Ratio: 0.5
@@ -60,8 +59,6 @@ Visualization Manager:
         base_footprint:
           Value: true
         base_link:
-          Value: true
-        base_stabilized:
           Value: true
         camera_mount:
           Value: true
@@ -118,37 +115,36 @@ Visualization Manager:
         map:
           odom:
             base_footprint:
-              base_stabilized:
-                base_link:
-                  chassis:
-                    camera_mount:
-                      stereo_camera_center:
-                        stereo_left_camera_frame:
-                          stereo_left_camera_optical_frame:
-                            {}
-                        stereo_right_camera_frame:
-                          stereo_right_camera_optical_frame:
-                            {}
-                    left_battery_offset:
-                      left_battery:
-                        {}
-                    left_rear_axle_carrier:
-                      left_rear_wheel:
-                        {}
-                    left_steering_link:
-                      left_front_axle_carrier:
-                        left_front_wheel:
+              base_link:
+                chassis:
+                  camera_mount:
+                    stereo_camera_center:
+                      stereo_left_camera_frame:
+                        stereo_left_camera_optical_frame:
                           {}
-                    right_battery_offset:
-                      right_battery:
-                        {}
-                    right_rear_axle_carrier:
-                      right_rear_wheel:
-                        {}
-                    right_steering_link:
-                      right_front_axle_carrier:
-                        right_front_wheel:
+                      stereo_right_camera_frame:
+                        stereo_right_camera_optical_frame:
                           {}
+                  left_battery_offset:
+                    left_battery:
+                      {}
+                  left_rear_axle_carrier:
+                    left_rear_wheel:
+                      {}
+                  left_steering_link:
+                    left_front_axle_carrier:
+                      left_front_wheel:
+                        {}
+                  right_battery_offset:
+                    right_battery:
+                      {}
+                  right_rear_axle_carrier:
+                    right_rear_wheel:
+                      {}
+                  right_steering_link:
+                    right_front_axle_carrier:
+                      right_front_wheel:
+                        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -398,7 +394,7 @@ Visualization Manager:
       Buffer Length: 1
       Class: rviz/Path
       Color: 239; 41; 41
-      Enabled: true
+      Enabled: false
       Head Diameter: 0.30000001192092896
       Head Length: 0.20000000298023224
       Length: 0.30000001192092896
@@ -416,12 +412,12 @@ Visualization Manager:
       Shaft Length: 0.10000000149011612
       Topic: /ackermann_vehicle/trajectory
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
       Color: 25; 255; 0
-      Enabled: true
+      Enabled: false
       Head Diameter: 0.30000001192092896
       Head Length: 0.20000000298023224
       Length: 0.30000001192092896
@@ -438,6 +434,33 @@ Visualization Manager:
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
       Topic: /ackermann_vehicle/trajectory_ground_truth
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rtabmap_ros/MapGraph
+      Enabled: true
+      Global loop closure: 255; 0; 0
+      Local loop closure: 255; 255; 0
+      Merged neighbor: 255; 170; 0
+      Name: MapGraph
+      Neighbor: 0; 0; 255
+      Topic: /ackermann_vehicle/rtabmap/mapGraph
+      Unreliable: false
+      User: 255; 0; 0
+      Value: true
+      Virtual: 255; 0; 255
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /ackermann_vehicle/rtabmap/labels
+      Name: Map Graph Labels
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rtabmap_ros/Info
+      Enabled: true
+      Name: Map Graph Info
+      Topic: /ackermann_vehicle/rtabmap/info
       Unreliable: false
       Value: true
   Enabled: true
@@ -480,10 +503,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6597967147827148
+      Pitch: 1.2697969675064087
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.188554286956787
+      Yaw: 3.1085550785064697
     Saved: ~
 Window Geometry:
   Displays:
