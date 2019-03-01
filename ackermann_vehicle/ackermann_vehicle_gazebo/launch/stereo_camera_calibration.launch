@@ -12,6 +12,7 @@
         --approximate 0.1
         --size 8x6
         --square 0.108
+        --camera_name stereo_camera
         left:=$(arg left_topic)
         right:=$(arg right_topic)
         left_camera:=$(arg left_frame)
