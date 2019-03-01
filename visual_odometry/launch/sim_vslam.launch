@@ -20,11 +20,12 @@
   <include if="$(arg vslam)" file="$(find visual_odometry)/launch/rtabmap.launch" ns="$(arg namespace)">
     <arg name="use_sim_time"            value="true" />
     <arg name="cfg"                     value="$(find visual_odometry)/config/rtabmap_gazebo.ini" />
-    <arg name="rtabmap_args"            value="--delete_db_on_start Reg/Strategy 0" />
+    <arg name="rtabmap_args"            value="--delete_db_on_start" />
     <arg name="stereo"                  value="true" />
-    <arg name="visual_odometry"         value="true"/>
+    <arg name="visual_odometry"         value="true" />
+    <arg name="approx_sync"             value="false" />
     <arg name="compressed"              value="$(arg play_bag)" />
-    <arg name="frame_id"                value="stereo_camera_center" />
+    <arg name="frame_id"                value="base_footprint" />
     <arg name="left_image_topic"        value="/$(arg namespace)/$(arg camera_ns)/left/image_rect_color" />
     <arg name="right_image_topic"       value="/$(arg namespace)/$(arg camera_ns)/right/image_rect_color" />
     <arg name="left_camera_info_topic"  value="/$(arg namespace)/$(arg camera_ns)/left/camera_info" />
