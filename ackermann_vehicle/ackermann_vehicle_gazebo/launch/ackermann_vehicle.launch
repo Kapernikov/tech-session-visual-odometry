@@ -48,7 +48,7 @@ limitations under the License.
   <arg name="x"           default="0.0" unless="$(eval world=='checkerboard')"/>
   <arg name="x"           default="0.2" if="$(eval world=='checkerboard')"/>
   <arg name="y"           default="0.0"/>
-  <arg name="z"           default="0.0" unless="$(eval world=='checkerboard')"/>
+  <arg name="z"           default="0.1" unless="$(eval world=='checkerboard')"/>
   <arg name="z"           default="1.0" if="$(eval world=='checkerboard')"/>
   <arg name="roll"        default="0.0"/>
   <arg name="pitch"       default="0.0"/>
@@ -85,6 +85,9 @@ limitations under the License.
       <param name="cmd_timeout" value="$(arg cmd_timeout)"/>
       <rosparam file="$(find ackermann_vehicle_gazebo)/config/em_3905_ackermann_ctrlr_params.yaml" command="load"/>
     </node>
+
+    <!-- TODO launch cam info from yaml nodes for left and right cameras -->
+    <!-- TODO also remap gazebo's camera_info topics -->
 
     <!-- launch stereo image proc pipeline for rectification -->
     <group if="$(arg rectify)">
