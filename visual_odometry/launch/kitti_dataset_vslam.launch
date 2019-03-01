@@ -5,7 +5,7 @@
   <arg name="rectify"  default="false" />
 
   <!-- arguments -->
-  <arg name="bag_file" default="kitti/kitti.bag" />
+  <arg name="bag_file" default="bags/kitti/kitti.bag" />
   <arg name="rate"     default="1" />
 
   <!-- play bag -->
