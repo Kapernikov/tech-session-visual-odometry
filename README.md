@@ -3,7 +3,7 @@
 Contains code and docker deployment files for the Visual Odometry Tech Session
 
 ## Installation (Manual / Docker / VM)
-### Manual Installation
+### Native - Ubuntu
 - Install [ROS Melodic Morenia](http://wiki.ros.org/melodic/Installation/Ubuntu)
 - Install catkin tools
 ```bash
@@ -27,7 +27,7 @@ $ cd ~/catkin_ws && rosdep install -yr --from-paths src --ignore-src --rosdistro
 $ catkin build
 ```
 
-### Using Docker
+### Docker
 - Install docker for [Windows](https://docs.docker.com/docker-for-windows/install/) or [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 - Clone this repository:
 ```bash
@@ -40,9 +40,9 @@ $ ./docker_build.sh
 ```
 - Create the container from the built image:
 ```bash
-$ ./docker_run_detached.sh
+$ ./docker_run.sh
 ```
-- Connect a terminal to the container
+- Connect a terminal to the running container
 ```bash
 $ ./docker_connect.sh
 ```
