@@ -86,8 +86,19 @@ limitations under the License.
       <rosparam file="$(find ackermann_vehicle_gazebo)/config/em_3905_ackermann_ctrlr_params.yaml" command="load"/>
     </node>
 
-    <!-- TODO launch cam info from yaml nodes for left and right cameras -->
-    <!-- TODO also remap gazebo's camera_info topics -->
+    <!-- launch cam info from yaml nodes for left and right cameras -->
+    <group unless="$(eval world=='checkerboard')">
+      <node name="left_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
+        <param name="cam_name" value="stereo_camera/left" />
+        <param name="cam_info_path" value="stereo_calibration/left.yaml" />
+        <remap from="camera_info" to="/$(arg namespace)/stereo_camera/left/camera_info" />
+      </node>
+      <node name="right_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
+        <param name="cam_name" value="stereo_camera/right" />
+        <param name="cam_info_path" value="stereo_calibration/right.yaml" />
+        <remap from="camera_info" to="/$(arg namespace)/stereo_camera/right/camera_info" />
+      </node>
+    </group>
 
     <!-- launch stereo image proc pipeline for rectification -->
     <group if="$(arg rectify)">
