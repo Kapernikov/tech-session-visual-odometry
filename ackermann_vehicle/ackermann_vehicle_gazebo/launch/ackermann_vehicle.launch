@@ -40,7 +40,6 @@ limitations under the License.
   <arg name="namespace"   default="ackermann_vehicle"/>
   <arg name="world"       default="empty" doc="worlds: [empty, warehouse, checkerboard]"/>
   <arg name="cmd_timeout" default="0.5"/>
-  <arg name="rectify"     default="true" />
   <arg name="stereo_view" default="false" />
   <arg name="paused"      default="false" />
 
@@ -87,29 +86,25 @@ limitations under the License.
     </node>
 
     <!-- launch cam info from yaml nodes for left and right cameras -->
-    <group unless="$(eval world=='checkerboard')">
-      <node name="left_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
-        <param name="cam_name" value="stereo_camera/left" />
-        <param name="frame_id" value="stereo_left_camera_optical_frame" />
-        <param name="cam_info_path" value="stereo_calibration/left.yaml" />
-        <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/left/camera_info_raw" />
-        <remap from="camera_info" to="/$(arg namespace)/stereo_camera/left/camera_info" />
-      </node>
-      <node name="right_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
-        <param name="cam_name" value="stereo_camera/right" />
-        <param name="frame_id" value="stereo_right_camera_optical_frame" />
-        <param name="cam_info_path" value="stereo_calibration/right.yaml" />
-        <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/right/camera_info_raw" />
-        <remap from="camera_info" to="/$(arg namespace)/stereo_camera/right/camera_info" />
-      </node>
-    </group>
+    <node name="left_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
+      <param name="cam_name" value="stereo_camera/left" />
+      <param name="frame_id" value="stereo_left_camera_optical_frame" />
+      <param name="cam_info_path" value="stereo_calibration/left.yaml" />
+      <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/left/camera_info_raw" />
+      <remap from="camera_info" to="/$(arg namespace)/stereo_camera/left/camera_info" />
+    </node>
+    <node name="right_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
+      <param name="cam_name" value="stereo_camera/right" />
+      <param name="frame_id" value="stereo_right_camera_optical_frame" />
+      <param name="cam_info_path" value="stereo_calibration/right.yaml" />
+      <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/right/camera_info_raw" />
+      <remap from="camera_info" to="/$(arg namespace)/stereo_camera/right/camera_info" />
+    </node>
 
     <!-- launch stereo image proc pipeline for rectification -->
-    <group if="$(arg rectify)">
-      <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" ns="stereo_camera" />
-      <node name="stereo_view" pkg="image_view" type="stereo_view" output="screen"
-            args="stereo:=stereo_camera image:=/image_rect_color" if="$(arg stereo_view)"/>
-    </group>
+    <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" ns="stereo_camera" />
+    <node name="stereo_view" pkg="image_view" type="stereo_view" output="screen"
+          args="stereo:=stereo_camera image:=/image_rect_color" if="$(arg stereo_view)"/>
 
     <!-- launch camera calibrator if checkerboard world is selected -->
     <include if="$(eval world=='checkerboard')" file="$(find ackermann_vehicle_gazebo)/launch/stereo_camera_calibration.launch" />
