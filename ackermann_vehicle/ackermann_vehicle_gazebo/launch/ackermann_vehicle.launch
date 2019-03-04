@@ -90,12 +90,16 @@ limitations under the License.
     <group unless="$(eval world=='checkerboard')">
       <node name="left_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
         <param name="cam_name" value="stereo_camera/left" />
+        <param name="frame_id" value="stereo_left_camera_optical_frame" />
         <param name="cam_info_path" value="stereo_calibration/left.yaml" />
+        <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/left/camera_info_raw" />
         <remap from="camera_info" to="/$(arg namespace)/stereo_camera/left/camera_info" />
       </node>
       <node name="right_cam_info_pub_node" pkg="cam_info_pub" type="cam_info_pub_node" output="screen">
         <param name="cam_name" value="stereo_camera/right" />
+        <param name="frame_id" value="stereo_right_camera_optical_frame" />
         <param name="cam_info_path" value="stereo_calibration/right.yaml" />
+        <remap from="camera_info_raw" to="/$(arg namespace)/stereo_camera/right/camera_info_raw" />
         <remap from="camera_info" to="/$(arg namespace)/stereo_camera/right/camera_info" />
       </node>
     </group>
