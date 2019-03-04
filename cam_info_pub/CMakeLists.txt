@@ -16,4 +16,4 @@ catkin_package(
 
 include_directories(${catkin_INCLUDE_DIRS})
 add_executable(cam_info_pub_node src/cam_info_pub.cpp)
-target_link_libraries(pub_cam_info ${catkin_LIBRARIES})
+target_link_libraries(cam_info_pub_node ${catkin_LIBRARIES})
