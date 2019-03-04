@@ -143,15 +143,10 @@
           <updateRate>15.0</updateRate>
           <cameraName>stereo_camera</cameraName>
           <imageTopicName>image_raw</imageTopicName>
-          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <cameraInfoTopicName>camera_info_raw</cameraInfoTopicName>
           <frameName>/stereo_left_camera_optical_frame</frameName>
           <rightFrameName>/stereo_right_camera_optical_frame</rightFrameName>
           <hackBaseline>0.12</hackBaseline>
-          <!-- <distortionK1>-0.066412</distortionK1> -->
-          <!-- <distortionK2>0.008609</distortionK2> -->
-          <!-- <distortionK3>0.0</distortionK3> -->
-          <!-- <distortionT1>-0.00012</distortionT1> -->
-          <!-- <distortionT2>-0.000814</distortionT2> -->
           <distortionK1>-0.0</distortionK1>
           <distortionK2>0.0</distortionK2>
           <distortionK3>0.0</distortionK3>
