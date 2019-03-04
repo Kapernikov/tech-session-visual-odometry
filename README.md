@@ -2,23 +2,7 @@
 
 Contains code and docker deployment files for the Visual Odometry Tech Session
 
-## Installation
-### Using Docker
-- Install docker for [Windows](https://docs.docker.com/docker-for-windows/install/) or [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-- Clone this repository:
-```bash
-$ git clone https://gitlab.com/Kapernikov/Intern/tech-session-visual-odometry.git
-```
-- Build the image:
-```bash
-$ cd /path/to/tech-session-visual-odometry
-$ ./docker_build.sh
-```
-- Create the container:
-```bash
-$ ./docker_run.sh
-```
-
+## Installation (Manual / Docker / VM)
 ### Manual Installation
 - Install [ROS Melodic Morenia](http://wiki.ros.org/melodic/Installation/Ubuntu)
 - Install catkin tools
@@ -43,14 +27,44 @@ $ cd ~/catkin_ws && rosdep install -yr --from-paths src --ignore-src --rosdistro
 $ catkin build
 ```
 
+### Using Docker
+- Install docker for [Windows](https://docs.docker.com/docker-for-windows/install/) or [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- Clone this repository:
+```bash
+$ git clone https://gitlab.com/Kapernikov/Intern/tech-session-visual-odometry.git
+```
+- Build the image:
+```bash
+$ cd /path/to/tech-session-visual-odometry
+$ ./docker_build.sh
+```
+- Create the container from the built image:
+```bash
+$ ./docker_run_detached.sh
+```
+- Connect a terminal to the container
+```bash
+$ ./docker_connect.sh
+```
+
+### Virtual Machine
+- Download and install Virtual-Box 5.2 (NOT 6.0) from the [official website](www.virtualbox.org/wiki/Download_Old_Builds_5_2)
+- Get the VM image in OVF format (will be passed around in a USB flash drive)
+- Open Virtual Box 5.2
+- Go to File > Import Appliance and browse to find the VM image
+- In the next screen you can change settings such as allocated CPU or RAM.
+Opt for at least half of your system total. For example if you have 8 cores and
+16GB RAM allocate 4 cores and 8GB RAM to the VM.
+- After finishing the import process, select the VM in the VBox manager and
+start it
+- Log in to user: kapernikov with password: kapernikov
+
 ### (Optional) Install OpenCV and RTAB-Map from source - For the more advanced exercises
 Installing OpenCV (3.4.5) with opencv-contrib will include xfeatures2d (and cuda) enabling the use of different features (eg. SIFT, SURF etc)
 in RTAB-Map. RTAB-Map and RTAB-Map ROS must be installed from source in order to access these features. Furthermore, before building RTAB-Map
 and RTAB-Map ROS from source, you can install other 3rd party visual odometry and visual slam libraries (eg. viso2, orb2-slam etc)
 and then RTAB-Map will be able to be built with those libraries and run with different visual odometry or vslam algorithms other than
 the default F2M and F2F.
-
-(the next steps can also be done inside a docker container)
 
 #### OpenCV Installation (Warning: May take hours!!!)
 - Install dependencies
