@@ -16,17 +16,17 @@ Contains code and docker deployment files for the Visual Odometry Tech Session
 By following this guide, you can create a working environment for experimentation
 with visual odometry and visual slam. There are three different ways this can
 be accomplished.
-- The first one, involves installing ros, this package and all required
-dependencies natively in an Ubuntu 18.04 OS.
+- The first option is to install ros, this package and all required libraries
+natively in an Ubuntu 18.04 OS.
 - The second option is to install a specially prepared docker container that
 will work in a Linux host OS, but there may be issues with exported graphics in
 a Windows host OS.
 - The third and final option is to install a virtual machine image containing an
 Ubuntu 18.04 OS with all required libraries.
 
-Installation via Docker or Virtual Machine has the disadvantage of slower
+*Warning: Installation via Docker or Virtual Machine has the disadvantage of slower
 execution of the gazebo robot simulator and possible of the visual odometry/slam
-algorithms due to reduced frame rate and update frequency.
+algorithms due to reduced frame rate and update frequency.*
 
 Recommendation:
 - Native installation for Ubuntu users
