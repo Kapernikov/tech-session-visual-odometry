@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- launch c++ node template -->
+  <!-- <node name="cool_node_name" pkg="talker_listener_exercise" type="cool_node" output="screen" /> -->
+
+  <!-- launch python node template -->
+  <!-- <node name="cool_node_name" pkg="talker_listener_exercise" type="cool_node.py" output="screen" /> -->
+
+<launch>
