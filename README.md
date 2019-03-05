@@ -93,8 +93,19 @@ $ sudo apt-get install
 $ git clone -b 3.4.5 https://github.com/opencv/opencv.git ~/opencv
 $ git clone -b 3.4.5 https://github.com/opencv/opencv_contrib.git ~/opencv_contrib
 ```
-- Build OpenCV  
-(delete the WITH\_CUDA, ENABLE_FAST\_MATH, CUDA\_FAST\_MATH WITH\_CUBLAS lines if you don't have cuda installed)
+
+- Build OpenCV without CUDA
+```bash
+$ cd opencv && mkdir build && cd build
+$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+    -DWITH_NONFREE=ON
+$ make -j4
+$ sudo make install
+```
+
+- Build OpenCV with CUDA
 ```bash
 $ cd opencv && mkdir build && cd build
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -103,9 +114,7 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D ENABLE_FAST_MATH=1 \
     -D CUDA_FAST_MATH=1 \
     -D WITH_CUBLAS=1 \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -D BUILD_EXAMPLES=ON .. \
     -DBUILD_opencv_cudacodec=OFF \
     -DWITH_NVCUVID=OFF \
     -DWITH_NONFREE=ON
