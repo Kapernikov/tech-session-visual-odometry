@@ -2,8 +2,38 @@
 
 Contains code and docker deployment files for the Visual Odometry Tech Session
 
-## Installation (Manual / Docker / VM)
-### Native - Ubuntu
+## Contents
+- [Environment Installation](#environment-installation)
+  - [Native-Ubuntu](#native-ubuntu)
+  - [Docker](#docker)
+  - [Virtual Machine](#virtual-machine)
+- [Extras](#extras)
+  - [OpenCV Installation](#opencv-installation)
+  - [RTAB-Map Installation](#rtab-map-installation)
+
+
+## Environment Installation
+By following this guide, you can create a working environment for experimentation
+with visual odometry and visual slam. There are three different ways this can
+be accomplished.
+- The first one, involves installing ros, this package and all required
+dependencies natively in an Ubuntu 18.04 OS.
+- The second option is to install a specially prepared docker container that
+will work in a Linux host OS, but there may be issues with exported graphics in
+a Windows host OS.
+- The third and final option is to install a virtual machine image containing an
+Ubuntu 18.04 OS with all required libraries.
+
+Installation via Docker or Virtual Machine has the disadvantage of slower
+execution of the gazebo robot simulator and possible of the visual odometry/slam
+algorithms due to reduced frame rate and update frequency.
+
+Recommendation:
+- Native installation for Ubuntu users
+- Docker installation for non-Ubuntu-Linux users
+- Virtual machine installation for Windows users
+
+### Native-Ubuntu
 - Install [ROS Melodic Morenia](http://wiki.ros.org/melodic/Installation/Ubuntu)
 - Install catkin tools
 ```bash
@@ -59,14 +89,21 @@ Opt for at least half of your system total. For example if you have 8 cores and
 start it
 - Log in to user: kapernikov with password: kapernikov
 
-### (Optional) Install OpenCV and RTAB-Map from source - For the more advanced exercises
-Installing OpenCV (3.4.5) with opencv-contrib will include xfeatures2d (and cuda) enabling the use of different features (eg. SIFT, SURF etc)
-in RTAB-Map. RTAB-Map and RTAB-Map ROS must be installed from source in order to access these features. Furthermore, before building RTAB-Map
-and RTAB-Map ROS from source, you can install other 3rd party visual odometry and visual slam libraries (eg. viso2, orb2-slam etc)
-and then RTAB-Map will be able to be built with those libraries and run with different visual odometry or vslam algorithms other than
+## Extras
+**This step is optional and applicable for the more advanced exercises.**
+
+Installing OpenCV (3.4.5) with opencv-contrib will include xfeatures2d (and
+cuda) enabling the use of different features (eg. SIFT, SURF etc) in RTAB-Map.
+RTAB-Map and RTAB-Map ROS must be installed from source in order to access these
+features. Furthermore, before building RTAB-Map and RTAB-Map ROS from source,
+you can install other 3rd party visual odometry and visual slam libraries
+(eg. viso2, orb2-slam etc) and then RTAB-Map will be able to be built with those
+libraries and run with different visual odometry or vslam algorithms other than
 the default F2M and F2F.
 
-#### OpenCV Installation (Warning: May take hours!!!)
+### OpenCV Installation
+**Warning: Takes a long time! Prepare in advance!**
+
 - Install dependencies
 ```bash
 $ sudo apt-get install
@@ -122,7 +159,9 @@ $ make -j4
 $ sudo make install
 ```
 
-#### RTAB-Map installation
+### RTAB-Map installation
+**Warning: Takes a long time! Prepare in advance!**
+
 - Install dependencies (g2o, GTSAM) by following the instructions in the [official installation page](https://github.com/introlab/rtabmap/wiki/Installation)
 - Clone the repositories
 ```bash
