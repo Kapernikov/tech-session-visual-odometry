@@ -4,7 +4,7 @@ Contains code and docker deployment files for the Visual Odometry Tech Session
 
 ## Contents
 - [Environment Installation](#environment-installation)
-  - [Native-Ubuntu](#native-ubuntu)
+  - [Native-Linux](#native-Linux)
   - [Docker](#docker)
   - [Virtual Machine](#virtual-machine)
 - [Extras](#extras)
@@ -17,7 +17,8 @@ By following this guide, you can create a working environment for experimentatio
 with visual odometry and visual slam. There are three different ways this can
 be accomplished.
 - The first option is to install ros, this package and all required libraries
-natively in an Ubuntu 18.04 OS.
+natively in an Ubuntu 18.04 OS or Debian Stretch. There is also experimental
+support for Arch Linux.
 - The second option is to install a specially prepared docker container that
 will work in a Linux host OS, but there may be issues with exported graphics in
 a Windows host OS.
@@ -29,12 +30,13 @@ execution of the gazebo robot simulator and possible of the visual odometry/slam
 algorithms due to reduced frame rate and update frequency.*
 
 Recommendation:
-- Native installation for Ubuntu users
-- Docker installation for non-Ubuntu-Linux users
+- Native installation for Ubuntu/Debian/Arch Linux users
+- Docker installation for non-Ubuntu/Debian/Arch Linux users
 - Virtual machine installation for Windows users
 
-### Native-Ubuntu
-- Install [ROS Melodic Morenia](http://wiki.ros.org/melodic/Installation/Ubuntu)
+### Native-Linux
+Supported Operating Systems: Ubuntu, Debian and possibly Arch Linux
+- Install [ROS Melodic Morenia](http://wiki.ros.org/melodic/Installation)
 - Install catkin tools
 ```bash
 $ sudo apt -y install python-catkin-tools
