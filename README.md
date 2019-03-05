@@ -81,7 +81,8 @@ $ ./docker_connect.sh
 
 ### Virtual Machine
 - Download and install Virtual-Box 5.2 (NOT 6.0) from the [official website](www.virtualbox.org/wiki/Download_Old_Builds_5_2)
-- Get the VM image in OVF format (will be passed around in a USB flash drive)
+- Download the [Virtual Machine image](https://drive.google.com/file/d/1qs0CiKUQjco2b_ETcRCl7dWXmvT38N1K/view?usp=sharing).
+It will alo be passed around in USB flash drive on the day of the tech session.
 - Open Virtual Box 5.2
 - Go to File > Import Appliance and browse to find the VM image
 - In the next screen you can change settings such as allocated CPU or RAM.
