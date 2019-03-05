@@ -4,7 +4,7 @@ import rospy
 
 class Talker:
     def __init__(self):
-        rospy.loginfo('talker_node: Hello World')
+        rospy.logerr('talker_node: Hello World')
 
 if __name__ == '__main__':
     rospy.init_node('talker_node', anonymous=False)

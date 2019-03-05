@@ -6,6 +6,7 @@ namespace talker_listener_exercise
 
 Listener::Listener()
 {
+  ROS_INFO("listener_node: Hellow World");
 }
 
 
