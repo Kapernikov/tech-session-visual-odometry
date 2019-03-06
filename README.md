@@ -138,7 +138,7 @@ $ cmake .. \
     -DCMAKE_BUILD_TYPE=RELEASE \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -DWITH_ENABLE_NONFREE=ON \
+    -DOPENCV_ENABLE_NONFREE=ON \
     -DWITH_QT=ON \
     -DWITH_OPENGL=ON
 $ make -j4
@@ -157,7 +157,7 @@ $ cmake .. -D CMAKE_BUILD_TYPE=RELEASE \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
     -DBUILD_opencv_cudacodec=OFF \
     -DWITH_NVCUVID=OFF \
-    -DWITH_ENABLE_NONFREE=ON \
+    -DOPENCV_ENABLE_NONFREE=ON \
     -DWITH_QT=ON \
     -DWITH_OPENGL=ON
 $ make -j4
