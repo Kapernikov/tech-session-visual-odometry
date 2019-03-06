@@ -109,24 +109,21 @@ the default F2M and F2F.
 
 - Install dependencies
 ```bash
-$ sudo apt-get install
-  build-essential \
-  cmake \
-  git \
-  libgtk2.0-dev \
-  pkg-config \
-  libavcodec-dev \
-  libavformat-dev \
-  libswscale-dev \
-  python-dev \
-  python-numpy \
-  libtbb2 \
-  libtbb-dev \
-  libjpeg-dev \
-  libpng-dev \
-  libtiff-dev \
-  libjasper-dev \
-  libdc1394-22-dev
+$ sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+$ sudo apt-get -y install build-essential cmake libgtk2.0-dev pkg-config libavcodec-dev \
+  libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libtbb-dev \
+  libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev checkinstall yasm \
+  gfortran libjpeg8-dev libjasper-dev software-properties-common libjasper1 \
+  libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev \
+  libxine2-dev libv4l-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+  libgtk2.0-dev libtbb-dev qt5-default libatlas-base-dev libfaac-dev \
+  libmp3lame-dev libtheora-dev libvorbis-dev libxvidcore-dev \
+  libopencore-amrnb-dev libopencore-amrwb-dev libavresample-dev x264 v4l-utils \
+  python3-testresources python3-dev python3-pip python-pip pytho-dev \
+  libprotobuf-dev protobuf-compiler libgoogle-glog-dev libgflags-dev \
+  libgphoto2-dev libeigen3-dev libhdf5-dev doxygen python-numpy python3-numpy
+
+$ cd /usr/include/linux && sudo ln -s -f ../libv4l1-videodev.h videodev.h && cd -
 ```
 - Clone the repositories:
 ```bash
@@ -137,10 +134,13 @@ $ git clone -b 3.4.5 https://github.com/opencv/opencv_contrib.git ~/opencv_contr
 - Build OpenCV without CUDA
 ```bash
 $ cd opencv && mkdir build && cd build
-$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -DWITH_NONFREE=ON
+$ cmake .. \
+    -DCMAKE_BUILD_TYPE=RELEASE \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+    -DWITH_NONFREE=ON \
+    -DWITH_QT=ON \
+    -DWITH_OPENGL=ON
 $ make -j4
 $ sudo make install
 ```
@@ -148,7 +148,7 @@ $ sudo make install
 - Build OpenCV with CUDA
 ```bash
 $ cd opencv && mkdir build && cd build
-$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+$ cmake .. -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D WITH_CUDA=ON \
     -D ENABLE_FAST_MATH=1 \
@@ -157,7 +157,9 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
     -DBUILD_opencv_cudacodec=OFF \
     -DWITH_NVCUVID=OFF \
-    -DWITH_NONFREE=ON
+    -DWITH_NONFREE=ON \
+    -DWITH_QT=ON \
+    -DWITH_OPENGL=ON
 $ make -j4
 $ sudo make install
 ```
