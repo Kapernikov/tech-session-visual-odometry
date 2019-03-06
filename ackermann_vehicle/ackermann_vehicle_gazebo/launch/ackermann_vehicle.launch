@@ -42,6 +42,8 @@ limitations under the License.
   <arg name="cmd_timeout" default="0.5"/>
   <arg name="stereo_view" default="false" />
   <arg name="paused"      default="false" />
+  <arg name="bag"         default="false" />
+  <arg name="bag_prefix"  default="gazebo_stereo_camera" />
 
   <!-- Vehicle pose -->
   <arg name="x"           default="0.0" unless="$(eval world=='checkerboard')"/>
@@ -52,6 +54,7 @@ limitations under the License.
   <arg name="roll"        default="0.0"/>
   <arg name="pitch"       default="0.0"/>
   <arg name="yaw"         default="0.0"/>
+
 
   <!-- load robot description -->
   <include file="$(find ackermann_vehicle_description)/launch/ackermann_vehicle.launch">
@@ -110,5 +113,11 @@ limitations under the License.
     <include if="$(eval world=='checkerboard')" file="$(find ackermann_vehicle_gazebo)/launch/stereo_camera_calibration.launch" />
 
   </group>
+
+  <node name="rosbag_recorder" pkg="rosbag" type="record" output="screen" if="$(arg bag)"
+    args="-o $(arg bag_prefix) -e
+    '(.*)/(left|right)/(camera_info|image_rect_color/(compressed|theora))'
+    '(.*)/odom_truth'
+    '/tf(|_static)'" />
 
 </launch>
