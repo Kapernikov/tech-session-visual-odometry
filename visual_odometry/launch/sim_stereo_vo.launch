@@ -16,6 +16,16 @@
   <!-- parameters -->
 	<param name="use_sim_time" type="bool" value="True"/>
 
+  <group if="$(arg play_bag)" ns="$(arg namespace)">
+    <!-- convert compressed images to raw -->
+    <node name="decompress_left" pkg="image_transport" type="republish" args="compressed in:=$(arg camera_ns)/left/image_rect_color raw out:=$(arg camera_ns)/left/image_rect_color" />
+    <node name="decompress_right" pkg="image_transport" type="republish" args="compressed in:=$(arg camera_ns)/right/image_rect_color raw out:=$(arg camera_ns)/right/image_rect_color" />
+
+    <!-- in case tf static is not publish publish robot model  -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find ackermann_vehicle_description)/urdf/em_3905.urdf.xacro" />
+    <node name="ackermann_vehicle_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
   <!-- Stereo Odometry -->
   <node pkg="rtabmap_ros" type="stereo_odometry" name="stereo_odometry" output="screen" ns="$(arg namespace)">
      <remap from="left/image_rect"       to="$(arg camera_ns)/left/image_rect_color"/>
