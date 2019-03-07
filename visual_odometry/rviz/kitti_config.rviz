@@ -176,7 +176,7 @@ Visualization Manager:
       Value: false
     - Alpha: 1
       Class: rtabmap_ros/MapGraph
-      Enabled: false
+      Enabled: true
       Global loop closure: 255; 0; 0
       Local loop closure: 255; 255; 0
       Merged neighbor: 255; 170; 0
@@ -185,14 +185,14 @@ Visualization Manager:
       Topic: /rtabmap/mapGraph
       Unreliable: false
       User: 255; 0; 0
-      Value: false
+      Value: true
       Virtual: 255; 0; 255
     - Class: rtabmap_ros/Info
-      Enabled: false
+      Enabled: true
       Name: Map Graph Info
       Topic: /rtabmap/info
       Unreliable: false
-      Value: false
+      Value: true
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /rtabmap/labels
@@ -341,25 +341,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 208.12840270996094
+      Distance: 270.4805908203125
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 91.97844696044922
-        Y: -54.45866394042969
-        Z: -22.104503631591797
+        X: 93.74561309814453
+        Y: -71.14021301269531
+        Z: -24.00163459777832
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5847964882850647
+      Pitch: 1.1447960138320923
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.138550281524658
+      Yaw: 3.138549566268921
     Saved: ~
 Window Geometry:
   Displays:
