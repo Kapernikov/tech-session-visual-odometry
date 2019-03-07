@@ -129,6 +129,7 @@ $ cd /usr/include/linux && sudo ln -s -f ../libv4l1-videodev.h videodev.h && cd 
 ```bash
 $ git clone -b 3.4.5 https://github.com/opencv/opencv.git ~/opencv
 $ git clone -b 3.4.5 https://github.com/opencv/opencv_contrib.git ~/opencv_contrib
+$ git clone https://github.com/ros-perception/vision_opencv.git ~/catkin_ws/src
 ```
 
 - Build OpenCV without CUDA
@@ -162,6 +163,7 @@ $ cmake .. -D CMAKE_BUILD_TYPE=RELEASE \
     -DWITH_OPENGL=ON
 $ make -j4
 $ sudo make install
+$ cd ~/catkin_ws && catkin build vision_opencv
 ```
 
 ### RTAB-Map installation
