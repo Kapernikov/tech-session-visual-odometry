@@ -1,4 +1,5 @@
 FROM ros:melodic-ros-base-bionic
+RUN apt-get clean
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -fy sudo wget software-properties-common git apt-utils vim \
   emacs gedit zsh ros-melodic-desktop python-catkin-tools
