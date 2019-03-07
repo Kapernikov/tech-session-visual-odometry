@@ -60,7 +60,7 @@ $ catkin build
 ```
 
 ### Docker
-- Install docker for [Windows](https://docs.docker.com/docker-for-windows/install/) or [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- Install [docker for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 - Clone this repository:
 ```bash
 $ git clone https://gitlab.com/Kapernikov/Intern/tech-session-visual-odometry.git
