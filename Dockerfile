@@ -26,11 +26,13 @@ USER kapernikov
 RUN mkdir -p /home/kapernikov/catkin_ws/src
 RUN rosdep update
 USER root
+ADD --chown=kapernikov:kapernikov . / /home/kapernikov/catkin_ws/src/tech-session-visual-odometry/
 RUN DEBIAN_FRONTEND=noninteractive rosdep install -yr --from-paths /home/kapernikov/catkin_ws/src --ignore-src --rosdistro melodic
 USER kapernikov
 WORKDIR /home/kapernikov/catkin_ws
 RUN catkin config --extend /opt/ros/melodic
 RUN catkin build
+RUN rm -rf /home/kapernikov/src/tech-session-visual-odometry
 RUN ln -sf /home/kapernikov/catkin_ws/src/tech-session-visual-odometry/datasets /home/kapernikov/.ros/datasets
 RUN ln -sf /home/kapernikov/catkin_ws/src/tech-session-visual-odometry/stereo_calibration /home/kapernikov/.ros/stereo_calibration
 WORKDIR /home/kapernikov
