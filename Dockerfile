@@ -31,7 +31,8 @@ USER kapernikov
 WORKDIR /home/kapernikov/catkin_ws
 RUN catkin config --extend /opt/ros/melodic
 RUN catkin build
-RUN ln -s /home/kapernikov/catkin_ws/src/tech-session-visual-odometry /home/kapernikov/.ros/datasets
+RUN ln -sf /home/kapernikov/catkin_ws/src/tech-session-visual-odometry/datasets /home/kapernikov/.ros/datasets
+RUN ln -sf /home/kapernikov/catkin_ws/src/tech-session-visual-odometry/stereo_calibration /home/kapernikov/.ros/stereo_calibration
 WORKDIR /home/kapernikov
 
 # COMMENT OUT below commands for minimum installation
@@ -68,6 +69,9 @@ WORKDIR /home/kapernikov
 # RUN make -j4
 # USER root
 # RUN make -j4 install
+# RUN git clone -q --depth=1 https://github.com/ros-perception/vision_opencv.git ~/catkin_ws/src/vision_opencv
+# WORKDIR /home/kapernikov/catkin_ws
+# RUN catkin build vision_opencv
 
 # Install rtabmap from source - for access to different feature types, vo, graph optimization algorithms
 # ---------------------------
@@ -103,7 +107,6 @@ WORKDIR /home/kapernikov
 # USER root
 # RUN make -j4 install
 # RUN ldconfig
-
 
 # install rtabmap-ros
 # USER kapernikov
