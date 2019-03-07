@@ -1,6 +1,6 @@
 #!/bin/sh
 xhost + # allow connections to X server
-docker start visual-odometry || \
+docker start visual-odometry -a > /dev/null 2>&1 || \
 docker run \
     --name="visual-odometry" \
     --env="DISPLAY" \
