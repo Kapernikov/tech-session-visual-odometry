@@ -25,10 +25,6 @@ a Windows host OS.
 - The third and final option is to install a virtual machine image containing an
 Ubuntu 18.04 OS with all required libraries.
 
-*Warning: Installation via Docker or Virtual Machine has the disadvantage of slower
-execution of the gazebo robot simulator and possible of the visual odometry/slam
-algorithms due to reduced frame rate and update frequency.*
-
 Recommendation:
 - Native installation for Ubuntu/Debian/Arch Linux users
 - Docker installation for non-Ubuntu/Debian/Arch Linux users
@@ -60,9 +56,18 @@ $ catkin build
 ```
 
 ### Docker
-**Warning! In some computers there are issues with some graphical applications, so
-you can try the docker setup but it's recommended to use the native setup or the
-virtual machine.**
+**Warning! If you have nvidia drivers active there issues with some of the graphical
+applications, so it's recommended to switch to intel drivers if available:
+```
+$ sudo prime-select intel
+```
+Then reboot and everything should work. If you don't have an nvidia card at all, it
+should work with the integrated intel card.
+
+You can also try to use nvidia-docker2 instead of docker, although it hasn't been
+tested.
+
+If this fails you can try one of the two setup approaches (native, VM).
 
 - Install [docker for Linux](https://docs.docker.com/install/)
 - Clone this repository:
