@@ -9,7 +9,7 @@
   <arg name="namespace"         default="/ackermann_vehicle" />
   <arg name="camera_ns"         default="stereo_camera" />
   <arg name="record_bag_prefix" default="sim_stereo_bag" /> <!-- bag record name prefix -->
-  <arg name="play_bag_file"     default="" /> <!-- name of bag file to run - must be located in ~/.ros -->
+  <arg name="play_bag_file"     default="datasets/gazebo/gazebo_stereo_camera.bag" /> <!-- name of bag file to run - must be located in ~/.ros -->
   <arg name="start"             default="0" /> <!-- set start time of bag file -->
   <arg name="rate"              default="1" /> <!-- set start time of bag file -->
 
