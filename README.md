@@ -100,6 +100,11 @@ Opt for at least half of your system total. For example if you have 8 cores and
 - After finishing the import process, select the VM in the VBox manager and
 start it
 - Log in to user: kapernikov with password: kapernikov
+- Go to ~/catkin_ws/src/tech-session-visual-odometry and pull changes
+```bash
+$ cd ~/catkin_ws/src/tech-session-visual-odometry
+$ git pull
+```
 
 ## Extras
 **This step is optional and applicable for the more advanced exercises.**
