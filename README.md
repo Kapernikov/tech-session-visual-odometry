@@ -60,6 +60,10 @@ $ catkin build
 ```
 
 ### Docker
+**Warning! In some computers there are issues with some graphical applications, so
+you can try the docker setup but it's recommended to use the native setup or the
+virtual machine.**
+
 - Install [docker for Linux](https://docs.docker.com/install/)
 - Clone this repository:
 ```bash
