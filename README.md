@@ -57,7 +57,7 @@ $ catkin build
 
 ### Docker
 **Warning! If you have nvidia drivers active there issues with some of the graphical
-applications, so it's recommended to switch to intel drivers if available:
+applications, so it's recommended to switch to intel drivers if available:**
 ```
 $ sudo prime-select intel
 ```
