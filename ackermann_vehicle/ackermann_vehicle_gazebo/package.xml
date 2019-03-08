@@ -36,6 +36,7 @@
 
   <run_depend>ackermann_msgs</run_depend>
   <run_depend>ackermann_vehicle_description</run_depend>
+  <run_depend>camera_calibration</run_depedn>
   <run_depend>controller_manager</run_depend>
   <run_depend>effort_controllers</run_depend>
   <run_depend>joint_state_controller</run_depend>
