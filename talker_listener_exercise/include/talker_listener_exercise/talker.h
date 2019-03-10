@@ -11,11 +11,12 @@ class Talker
   public:
     Talker();
     ~Talker();
+    void publish();
 
-    // put your functions here (eg. message callback)
+    // TODO put your functions here
 
   private:
-    // put your variables here
+    // TODO put your variables here
 
 };  // class Talker
 

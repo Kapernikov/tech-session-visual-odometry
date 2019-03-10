@@ -14,6 +14,10 @@ Talker::~Talker()
 {
 }
 
+Talker::publish()
+{
+}
+
 
 }  // namespace talker_listener_exercise
 

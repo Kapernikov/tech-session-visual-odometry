@@ -12,10 +12,10 @@ class Listener
     Listener();
     ~Listener();
 
-    // put your functions here (eg. message callback)
+    // TODO put your functions here (eg. message callback)
 
   private:
-    // put your variables here
+    // TODO put your variables here
 
 };  // class Listener
 
