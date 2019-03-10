@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>trajectory_evaluation</name>
+  <version>0.0.0</version>
+  <description>The trajectory_evaluation package</description>
+  <maintainer email="george@kapernikov.com">George Kouros</maintainer>
+  <license>(c) 2019 Kapernikov CVBA. All rights reserved.</license>
+  <author email="george@kapernikov.com">George Kouros</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rosbag</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+
+  <export>
+  </export>
+</package>
