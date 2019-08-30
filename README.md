@@ -1,6 +1,13 @@
 # tech-session-visual-odometry
 
 Contains code and docker deployment files for the Visual Odometry Tech Session
+that was organized for Kapernikov consultants to familiarize with ROS,
+visual odometry, visual slam, and robotics software development in general.
+The presentation for this tech-session can be found on the following link:
+[kapernikov-vo-tech-session](https://docs.google.com/presentation/d/1qRhhcy8SLSS7qVd-6X7D2iXQxXKe-ksvDdXYkOkLv1U/edit?usp=sharing)
+
+Instructions on how to use this repository and how to do the exercises can be found
+on the [wiki page]()
 
 ## Contents
 - [Environment Installation](#environment-installation)
