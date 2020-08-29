@@ -14,7 +14,7 @@ Talker::~Talker()
 {
 }
 
-Talker::publish()
+void Talker::publish()
 {
 }
 
